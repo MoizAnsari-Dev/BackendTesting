@@ -18,7 +18,7 @@ app.use(cors({
 );
 // convert the in JSON
 app.use(express.json());
-
+// To accept the URL input 
 app.use(express.urlencoded({extended: true}));
 
 const PORT = process.env.PORT || 4000 ;
