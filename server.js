@@ -2,6 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import db from './utils/db.js';
+//Importing all routes in UserRoute
+import userRoutes from './routes/UserRoutes.js'
+
 
 dotenv.config()
 const app = express();  
@@ -32,8 +35,10 @@ app.get("/moiz", (req, res) => {
 })
 
 // connect to Database
-db();
 
-app.listen(PORT, () => {
+app.use('/api/v1/users', userRoutes)
+
+app.listen(PORT, async () => {
+    await db();
     console.log(`Lesting On ${PORT}`);    
 })
