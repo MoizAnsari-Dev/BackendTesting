@@ -34,11 +34,10 @@ app.get("/moiz", (req, res) => {
     res.send('Comming form Moiz')
 })
 
-// connect to Database
-
 app.use('/api/v1/users', userRoutes)
 
 app.listen(PORT, async () => {
+    // connect to Database
     await db();
     console.log(`Lesting On ${PORT}`);    
 })
