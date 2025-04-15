@@ -1,4 +1,5 @@
 import mongoose, { model } from "mongoose";
+import { type } from "os";
 
 const userSchema = new mongoose.Schema({
     name: String,
@@ -12,6 +13,9 @@ const userSchema = new mongoose.Schema({
     isVerified: {
         type: Boolean,
         default: false
+    },
+    verificationToken: {
+        type: String,
     },
     resetPassswordToken: {
         type: String,
