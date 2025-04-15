@@ -49,14 +49,32 @@ const registersUser = async (req, res) => {
             },
           });
 
+
         const mailOption = {
-            from: process.env.MAILTRAP_SENDEREMAIL
+            from: process.env.MAILTRAP_SENDEREMAIL,
+            to: user.email,
+            subject: "Verify your email",
+            text: `Please click this link below: ${process.env.BASE_URL}/api/v1/users/verify/${token}`
         }
 
+        await transporter.sendMail(mailOption)
 
-    } catch (error) {
+        res.status(201).json({
+            message: 'User Registred Successfully',
+            success: true
+        })
         
+    } catch (error) {
+        res.status(400).json({
+            message: 'User not  Registred',
+            error,
+            success: false
+        })        
     }    
+}
+
+const verifyUser = async (req, res) => {
+    
 }
 
 export {registersUser}
